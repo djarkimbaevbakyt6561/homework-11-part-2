@@ -1,16 +1,17 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import { AddProductContext } from "../../contexts/AddProductContext";
 import AddProductItem from "./Add-Product-Item";
-const AddProduct = ({ addProduct, products, addedProductState, trueAddHandler }) => {
+const AddProduct = () => {
+    const context = useContext(AddProductContext)
+    const {  products, addedProductState } = context
     return (
         <Container>
             {products.map((el, index) => {
 
                 return (
                     <AddProductItem
-                        trueAddHandler={trueAddHandler}
                         addButtonState={!addedProductState[index]}
-                        addProduct={addProduct}
                         data={el}
                         key={el.id}
                     />

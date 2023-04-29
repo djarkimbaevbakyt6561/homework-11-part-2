@@ -94,12 +94,13 @@ const AddProductProvider = (props) => {
     useEffect(() => {
         localStorage.setItem('AddBoolean', JSON.stringify(addedProductState));
     }, [addedProductState]);
+
     const initState = {
         addedProductState,
         trueAddHandler,
         falseAddHandler,
         productItem,
-        deleteProject: deleteProduct,
+        deleteProduct,
         addNewProductHandler,
         products,
     };

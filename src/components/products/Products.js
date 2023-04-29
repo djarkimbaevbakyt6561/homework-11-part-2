@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useReducer, useContext } from "react";
 import styled from "styled-components";
+import { AddProductContext } from "../../contexts/AddProductContext";
 import CountProvider from "../../contexts/CountContext";
 import { TotalPriceContext } from "../../contexts/TotalPriceContext";
 import ProductItem from "./Product-Item";
 
 
-const Products = ({ onClick, products, falseAddHandler }) => {
+const Products = () => {
     const context = useContext(TotalPriceContext)
+    const addProductContext = useContext(AddProductContext)
+    const { productItem } = addProductContext
     return (
         <Container>
             <ProductContainer>
@@ -18,13 +21,11 @@ const Products = ({ onClick, products, falseAddHandler }) => {
                 <p>Remove</p>
             </ProductContainer>
             <OrderedList>
-                {products.map((el, index) => {
+                {productItem.products.map((el, index) => {
                     return (
                         <CountProvider onPriceChange={context.calculateTotalHandler} price={el.price}>
                             <ProductItem
-                                falseAddHandler={falseAddHandler}
                                 el={el}
-                                onClick={onClick}
                                 id={el.id}
                                 key={el.id}
                                 number={index + 1}

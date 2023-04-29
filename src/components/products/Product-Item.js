@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useReducer } from "react";
 import styled from "styled-components";
+import { AddProductContext } from "../../contexts/AddProductContext";
 import { CountContext } from "../../contexts/CountContext";
 
-const ProductItem = ({ onClick, id, image, title, number, falseAddHandler, el }) => {
+const ProductItem = ({ id, image, title, number, el }) => {
+   const addProductContext = useContext(AddProductContext)
+   const { deleteProduct, falseAddHandler } = addProductContext
    const context = useContext(CountContext)
    return (
       <ProductContainer>
@@ -18,7 +21,7 @@ const ProductItem = ({ onClick, id, image, title, number, falseAddHandler, el })
             <QuantityButton onClick={context.plusHandler}>+</QuantityButton>
          </QuantityContainer>
          <RemoveButton onClick={() => {
-            onClick(id, context.price)
+            deleteProduct(id, context.price)
             falseAddHandler(el)
          }}>Remove</RemoveButton>
       </ProductContainer>

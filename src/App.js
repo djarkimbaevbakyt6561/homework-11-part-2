@@ -9,9 +9,9 @@ function App() {
   const context = useContext(AddProductContext)
   return (
     <div className="App">
-      <AddProducts products={context.products} trueAddHandler={context.trueAddHandler} addedProductState={context.addedProductState} addProduct={context.addNewProductHandler}></AddProducts>
+      <AddProducts></AddProducts>
       <TotalPriceProvider products={context.productItem.products}>
-        <Products falseAddHandler={context.falseAddHandler} onClick={context.deleteProject} products={context.productItem.products}></Products>
+        <Products></Products>
       </TotalPriceProvider>
     </div>
   );

@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import { AddProductContext } from "../../contexts/AddProductContext";
 import Button from "../UI/Button";
-const AddProductItem = ({ data, addProduct, addButtonState, trueAddHandler, key }) => {
+const AddProductItem = ({ data, addButtonState, key }) => {
+    const context = useContext(AddProductContext)
+    const { trueAddHandler, addNewProductHandler } = context
+    console.log(addNewProductHandler);
     return (
         <Container key={key}>
             <Image src={data.image} />
@@ -9,7 +13,7 @@ const AddProductItem = ({ data, addProduct, addButtonState, trueAddHandler, key 
                 <ProductName>{data.title} - <span>$ {data.price}</span></ProductName>
                 {addButtonState ?
                     <Button bgColor={addButtonState} onClick={() => {
-                        addProduct(data);
+                        addNewProductHandler(data);
                         trueAddHandler(data)
                     }}>Add</Button>
                     : <Button bgColor={addButtonState}>Added</Button>}
